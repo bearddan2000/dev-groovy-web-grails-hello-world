@@ -1,0 +1,14 @@
+FROM tubbynl/grails
+MAINTAINER Manuel Ortiz Bey <ortiz.manuel@mozartanalytics.com>
+
+# Run Grails refresh-dependencies command to
+# pre-download dependencies but not create
+# unnecessary build files or artifacts.
+RUN grails create-app --inplace --profile=web
+
+# Copy App files
+# COPY bin/ .
+
+# Set Default Behavior
+ENTRYPOINT ["grails"]
+CMD ["clean", "compile", "assemble", "run-app"]
